@@ -4,9 +4,39 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>轮播组件封装</title>
+  <title>简单活动页开发</title>
 </head>
 <body>
-  
+  <script>
+    /**
+     * 移动端适配方案 - rem
+     * 解决问题: 1px物理像素、屏幕适配以及图片高清屏显示
+     * 特性:
+     * 
+     */
+    // rem计算
+    var docEl = document.documentElement;
+    var rem = docEl.getBoundingClientRect().width / 10;
+    document.documentElement.style.fontSize = rem + "px"
+    // dpr处理
+    var isIphone = window.navigator.userAgent.match(/iphone/i);
+    var dpr = isIphone ? window.devicePixelRatio : 1;
+    var scale = 1 / dpr;
+    var meta = document.querySelector("meta[name='viewport']")
+    meta.setAttribute("content", "width=device-width," 
+    + "initial-scale=" + scale 
+    + ", maximum-scale=" + scale 
+    + ", minimum-scale=" + scale);
+    docEl['data-dpr'] = dpr;
+    // 处理设备旋转和尺寸重置事件
+  </script>
+  <div class="container">
+    <div class="left">
+      我是左边
+    </div>
+    <div class="right">
+      我是右边
+    </div>
+  </div>
 </body>
 </html>

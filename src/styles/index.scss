@@ -1,3 +1,12 @@
-body {
-  background-color:red;
+.container {
+  > div {
+    border: solid;
+    display: inline-block;
+  }
+  .left {
+    width: 8rem;
+  }
+  .right {
+    height: 12rem;
+  }
 }

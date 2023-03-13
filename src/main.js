@@ -1,5 +1,0 @@
-import "./styles/index.scss"
-// import "./lib/rem.flexible"
-import "./lib/rem"
-// import "./lib/rem.car"
-// import "./lib/rem.4399"

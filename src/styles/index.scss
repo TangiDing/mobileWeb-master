@@ -1,46 +1,153 @@
+// 封装rem换算函数
 @function pxRoRem($px){
   @return calc($px / 75) + rem 
+}
+
+@mixin pureShadowBorder($direction, $color, $width){
+  border-#{$direction}: {
+    color: $color;
+    width: $width;
+    style: solid;
+  };
+}
+
+html {
+  height: 100%;
 }
 
 body {
   padding: 0;
   margin: 0;
   font-size: 12px;
-  width: 10rem;
-  margin:0 auto;
-  box-sizing: border-box;
+  max-width: 10rem;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
 }
+
 .container {
-  > div {
-    height: 0.5rem;
-    line-height: 0.5rem;
-    text-align: center;
+  min-height: 100%;
+  padding-top: pxRoRem(73);
+  background: radial-gradient(circle,#ffd066, #ff8101);
+}
+
+.bg_decoration {
+  width: pxRoRem(750);
+  height: pxRoRem(568);
+  background-size: contain;
+  background-position: center;
+  background-image: url("../images/bg_decoration.png");
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.band {
+  width: pxRoRem(612);
+  height: pxRoRem(73);
+  font-size: 1.7em;
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0 auto;
+  background-color: #fff;
+  letter-spacing: 0.2em;
+  color: #fb5d44;
+  font-weight: bold;
+  @include pureShadowBorder('bottom', #fb5d44, pxRoRem(5))
+}
+
+.bg_light {
+  width: pxRoRem(318);
+  height: pxRoRem(383);
+  background-image: url("../images/light.png");
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  top: pxRoRem(-100);
+  &--second {
+    left: pxRoRem(200);
+    top: pxRoRem(-140);
   }
-  .left {
-    width: pxRoRem(330);
-    background-color: yellow;
-    float: left;
-    // border-bottom: 1px green solid;
+}
+
+.title {
+  color: #feffff;
+  font-size: 2em;
+  font-weight: bold;
+  text-shadow:0.05em 0.1em #f66817,-0.05em 0.1em #f66817;
+  margin-top: pxRoRem(38);
+}
+
+.drawPan {
+  background-image: url("../images/drawPan.png");
+  width: pxRoRem(655);
+  height: pxRoRem(866);
+  background-position: center;
+  background-size:contain;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  position: relative;
+  .row {
+    display: flex;
+    justify-content: space-between;
   }
-  .right {
-    width: pxRoRem(420);
-    background-color: blue;
-    float: right;
+  &_content {
+    width: pxRoRem(500);
+    height: pxRoRem(415);
+    position: absolute;
+    top: pxRoRem(330);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @for $var from 1 to 9 {
+      &.active-#{$var} {
+        .drawPan_cell--#{$var} {
+          background-color: yellow;
+        }
+      }
+    } 
   }
-  .bg {
-    width: 9.71rem;
-    height: 7.59rem;
-    background-size: contain;
+  .btn-startDraw {
+    background-image: url("../images/btn-startDraw.png");
     background-position: center;
+    background-size: contain;
+    width: pxRoRem(193);
+    height: pxRoRem(127);
     background-repeat: no-repeat;
-    background-image: url("../images/test@2x.png");
+  }
+  &_cell {
+    $largeWidth:451 - 262;
+    $normalWidth:131;
+    $cellHeight:127;
+    border-radius: pxRoRem(10);
+    height: pxRoRem($cellHeight);
+    background-color: #fff;
+    width: pxRoRem($normalWidth);
+    @include pureShadowBorder('right', #fcbb75, pxRoRem(6) );
+    @include pureShadowBorder('bottom', #fcbb75, pxRoRem(6) );
+    &--large {
+      width: pxRoRem($largeWidth);
+    }
+  }
+  .ruleDesc {
+    color: #fff;
+    position: absolute;
+    bottom: pxRoRem(10);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
-
-.text {
-  font-size: 1.2em;
-}
-
 
 html[data-dpr='2'] {
    body {

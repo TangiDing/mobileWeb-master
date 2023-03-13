@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "/dist",
+    "lib": ["ES2015", "DOM"],
+    "target": "ES2015",
+    "moduleResolution": "node",
+    "noImplicitThis": true // 防止this被推导为any
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
